@@ -39,18 +39,18 @@ class Settings(BaseSettings):
         extra="ignore",                     # silently ignore unknown vars
     )
 
-    # --- LLM Provider (Grok / xAI) ------------------------------------------
-    grok_api_key: str = Field(
+    # --- LLM Provider (Groq) ------------------------------------------
+    groq_api_key: str = Field(
         default="",
-        description="API key for Grok (xAI). Get one at https://console.x.ai/",
+        description="API key for Groq. Get one at https://console.groq.com/",
     )
-    grok_model_name: str = Field(
-        default="grok-3-mini-fast",
-        description="Grok model to use for JD parsing and resource tagging.",
+    groq_model_name: str = Field(
+        default="llama-3.3-70b-versatile",
+        description="Groq model to use for JD parsing.",
     )
-    grok_base_url: str = Field(
-        default="https://api.x.ai/v1",
-        description="Base URL for the Grok API (OpenAI-compatible).",
+    groq_base_url: str = Field(
+        default="https://api.groq.com/openai/v1",
+        description="Base URL for the Groq API (OpenAI-compatible).",
     )
 
     # --- Data Paths ----------------------------------------------------------
@@ -111,9 +111,9 @@ class Settings(BaseSettings):
         )
 
     @property
-    def has_grok_key(self) -> bool:
-        """Check if a Grok API key is configured."""
-        return bool(self.grok_api_key and self.grok_api_key != "xai-your-key-here")
+    def has_groq_key(self) -> bool:
+        """Check if a Groq API key is configured."""
+        return bool(self.groq_api_key)
 
 
 @lru_cache(maxsize=1)

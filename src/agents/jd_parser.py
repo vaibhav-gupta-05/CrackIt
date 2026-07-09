@@ -30,13 +30,13 @@ def get_llm() -> ChatOpenAI:
     Uses the ChatOpenAI client but configured to point to Grok/Groq API.
     """
     settings = get_settings()
-    if not settings.has_grok_key:
-        raise ValueError("GROK_API_KEY is not set in the environment.")
+    if not settings.has_groq_key:
+        raise ValueError("GROQ_API_KEY is not set in the environment.")
         
     return ChatOpenAI(
-        api_key=settings.grok_api_key,
-        base_url=settings.grok_base_url,
-        model=settings.grok_model_name,
+        api_key=settings.groq_api_key,
+        base_url=settings.groq_base_url,
+        model=settings.groq_model_name,
         temperature=0.1,  # Low temperature for extraction tasks
         max_retries=3,
         model_kwargs={"response_format": {"type": "json_object"}}
@@ -70,6 +70,7 @@ the expected experience level, and predict the types of interview rounds a candi
 
 CRITICAL: For 'extracted_skills', you MUST extract single, concise keywords only (e.g., "Java", "OOP", "Git"). Do NOT extract full sentences or long phrases.
 
+You MUST output your response in JSON format.
 {format_instructions}
 """,
             input_variables=["raw_jd"],
