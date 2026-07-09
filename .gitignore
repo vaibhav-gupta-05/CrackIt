@@ -1,0 +1,58 @@
+# ============================================================================
+# CrackIT — .gitignore
+# ============================================================================
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+*.egg
+dist/
+build/
+*.whl
+
+# --- Virtual Environment ---
+venv/
+.venv/
+env/
+ENV/
+
+# --- Environment Variables (SECRETS) ---
+.env
+.env.local
+.env.production
+
+# --- IDE ---
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# --- Data (generated, not committed) ---
+data/chroma_db/
+data/cache.db
+*.db-journal
+
+# --- Playwright ---
+playwright-report/
+test-results/
+
+# --- Testing ---
+.coverage
+htmlcov/
+.pytest_cache/
+
+# --- OS ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Streamlit ---
+.streamlit/secrets.toml
+
+# --- Logs ---
+*.log
+logs/

@@ -1,0 +1,20 @@
+# render.yaml - Infrastructure as Code for Render.com
+# This file tells Render exactly how to build and run the app.
+
+services:
+  - type: web
+    name: crackit-dashboard
+    env: python
+    buildCommand: "pip install -r requirements.txt && playwright install chromium"
+    startCommand: "bash start.sh"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.10.11
+      - key: API_HOST
+        value: 0.0.0.0
+      - key: API_PORT
+        value: 8000
+      - key: SCRAPER_HEADLESS
+        value: true
+      - key: GROQ_API_KEY
+        sync: false # You will manually paste this into Render's dashboard for security
